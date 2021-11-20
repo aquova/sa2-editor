@@ -19,6 +19,7 @@ const TIME_OFFSET = 8
 
 const NUM_MISSIONS = 5
 
+// HTML id, save file offset, is racing level
 type LevelEntry = [string, number, boolean]
 
 // Note the hyphens in the level names
@@ -47,10 +48,36 @@ const KNUX_OFFSETS: LevelEntry[] = [
     ["Meteor-Herd", 0x40F8, false]
 ]
 
+const EGGMAN_OFFSETS: LevelEntry[] = [
+    ["Iron-Gate", 0x30E4, false],
+    ["Sand-Ocean", 0x388C, false],
+    ["Lost-Colony", 0x3D24, false],
+    ["Weapons-Bed", 0x31A8, false],
+    ["Cosmic-Wall", 0x4964, false]
+]
+
+const ROUGE_OFFSETS: LevelEntry[] = [
+    ["Dry-Lagoon", 0x3640, false],
+    ["Egg-Quarters", 0x3C60, false],
+    ["Security-Hall", 0x2E98, false],
+    ["Route-280", 0x572C, true],
+    ["Mad-Space", 0x4A28, false]
+]
+
+const SHADOW_OFFSETS: LevelEntry[] = [
+    ["Radical-Highway", 0x3330, false],
+    ["White-Jungle", 0x2B88, false],
+    ["Sky-Rail", 0x2D10, false],
+    ["Final-Chase", 0x4718, false]
+]
+
 export function populate_levels(save_data: Uint8Array) {
     populate_character(save_data, SONIC_OFFSETS)
     populate_character(save_data, TAILS_OFFSETS)
     populate_character(save_data, KNUX_OFFSETS)
+    populate_character(save_data, SHADOW_OFFSETS)
+    populate_character(save_data, EGGMAN_OFFSETS)
+    populate_character(save_data, ROUGE_OFFSETS)
 }
 
 function populate_character(save_data: Uint8Array, char_offsets: LevelEntry[]) {

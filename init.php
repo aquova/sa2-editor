@@ -23,8 +23,40 @@
         ["Death Chamber", FALSE],
         ["Meteor Herd", FALSE],
     ]);
+    define("EGGMAN_LVLS", [
+        ["Iron Gate", FALSE],
+        ["Sand Ocean", FALSE],
+        ["Lost Colony", FALSE],
+        ["Weapons Bed", FALSE],
+        ["Cosmic Wall", FALSE]
+    ]);
+    define("ROUGE_LVLS", [
+        ["Dry Lagoon", FALSE],
+        ["Egg Quarters", FALSE],
+        ["Security Hall", FALSE],
+        ["Route 280", TRUE],
+        ["Mad Space", FALSE]
+    ]);
+    define("SHADOW_LVLS", [
+        ["Radical Highway", FALSE],
+        ["White Jungle", FALSE],
+        ["Sky Rail", FALSE],
+        ["Final Chase", FALSE]
+    ]);
+
+    define("SONIC_UPGRADES", ["Magic Gloves", "Light Shoes", "Ancient Light", "Bounce Bracelet", "Flame Ring", "Mystic Melody"]);
+    define("TAILS_UPGRADES", ["Laser Blaster", "Booster", "Mystic Melody", "Bazooka"]);
+    define("KNUX_UPGRADES", ["Mystic Melody", "Shovel Claw", "Air Necklace", "Hammer Gloves", "Sunglasses"]);
+    define("SHADOW_UPGRADES", ["Flame Ring", "Air Shoes", "Ancient Light", "Mystic Melody"]);
+    define("EGGMAN_UPGRADES", ["Laser Blaster", "Mystic Melody", "Jet Engine", "Large Cannon", "Protective Armor"]);
+    define("ROUGE_UPGRADES", ["Mystic Melody", "Pick Nails", "Treasure Scope", "Iron Boots"]);
 
     function generate_all_tbls() {
+        generate_all_upgrades();
+        generate_all_levels();
+    }
+
+    function generate_all_levels() {
         echo "<h2>Sonic Stages</h2>";
         foreach (SONIC_LVLS as $lvl) {
             generate_level_tbl($lvl[0], FALSE);
@@ -38,6 +70,23 @@
         echo "<h2>Knuckles Stages</h2>";
         foreach (KNUX_LVLS as $lvl) {
             generate_level_tbl($lvl[0], FALSE);
+        }
+
+        echo "<br/>";
+        echo "<hr/>";
+        echo "<h2>Shadow Stages</h2>";
+        foreach (SHADOW_LVLS as $lvl) {
+            generate_level_tbl($lvl[0], FALSE);
+        }
+
+        echo "<h2>Eggman Stages</h2>";
+        foreach (EGGMAN_LVLS as $lvl) {
+            generate_level_tbl($lvl[0], $lvl[1]);
+        }
+
+        echo "<h2>Rouge Stages</h2>";
+        foreach (ROUGE_LVLS as $lvl) {
+            generate_level_tbl($lvl[0], $lvl[1]);
         }
     }
 
@@ -65,5 +114,25 @@
             echo "</tbody>";
         }
         echo "</table>";
+    }
+
+    function generate_all_upgrades() {
+        echo "<h2>Upgrades</h2>";
+        echo "<table>";
+        echo "<tr>";
+        echo "<td>Sonic</td>";
+        echo "<td>";
+        generate_upgrade_info(SONIC_UPGRADES);
+        echo "</td>";
+        echo "</tr>";
+        echo "</table>";
+    }
+
+    function generate_upgrade_info($char_upgrades) {
+        foreach ($char_upgrades as $upgrade) {
+            $id_name = str_replace(' ', '-', $upgrade);
+            echo "<input type='checkbox' id=$id_name>";
+            echo "<label for=$id_name>$upgrade</label>";
+        }
     }
 ?>
