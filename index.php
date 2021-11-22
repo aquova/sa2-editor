@@ -23,6 +23,10 @@
             </ul>
         </details>
         <hr/>
+        <div id="toc">
+            <?php generate_toc(); ?>
+        </div>
+        <hr/>
         <h2>Save Details</h2>
         <p id="emblem_count">Number of Emblems: 0</p>
         <p id="ring_count">Total Rings: 0</p>

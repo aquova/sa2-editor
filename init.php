@@ -56,35 +56,47 @@
         generate_all_levels();
     }
 
+    function generate_toc() {
+        echo "<h2>Sections:</h2>";
+        echo "<ul>";
+        echo "<li><a href='#sonic_stages'>Sonic Stages</a></li>";
+        echo "<li><a href='#tails_stages'>Tails Stages</a></li>";
+        echo "<li><a href='#knux_stages'>Knuckles Stages</a></li>";
+        echo "<li><a href='#shadow_stages'>Shadow Stages</a></li>";
+        echo "<li><a href='#eggman_stages'>Eggman Stages</a></li>";
+        echo "<li><a href='#rouge_stages'>Rouge Stages</a></li>";
+        echo "</ul>";
+    }
+
     function generate_all_levels() {
-        echo "<h2>Sonic Stages</h2>";
+        echo "<h2 id='sonic_stages'>Sonic Stages</h2>";
         foreach (SONIC_LVLS as $lvl) {
             generate_level_tbl($lvl[0], FALSE);
         }
 
-        echo "<h2>Tails Stages</h2>";
+        echo "<h2 id='tails_stages'>Tails Stages</h2>";
         foreach (TAILS_LVLS as $lvl) {
             generate_level_tbl($lvl[0], $lvl[1]);
         }
 
-        echo "<h2>Knuckles Stages</h2>";
+        echo "<h2 id='knux_stages'>Knuckles Stages</h2>";
         foreach (KNUX_LVLS as $lvl) {
             generate_level_tbl($lvl[0], FALSE);
         }
 
         echo "<br/>";
         echo "<hr/>";
-        echo "<h2>Shadow Stages</h2>";
+        echo "<h2 id='shadow_stages'>Shadow Stages</h2>";
         foreach (SHADOW_LVLS as $lvl) {
             generate_level_tbl($lvl[0], FALSE);
         }
 
-        echo "<h2>Eggman Stages</h2>";
+        echo "<h2 id='eggman_stages'>Eggman Stages</h2>";
         foreach (EGGMAN_LVLS as $lvl) {
             generate_level_tbl($lvl[0], $lvl[1]);
         }
 
-        echo "<h2>Rouge Stages</h2>";
+        echo "<h2 id='rouge_stages'>Rouge Stages</h2>";
         foreach (ROUGE_LVLS as $lvl) {
             generate_level_tbl($lvl[0], $lvl[1]);
         }
