@@ -52,7 +52,7 @@
     define("ROUGE_UPGRADES", ["Mystic Melody", "Pick Nails", "Treasure Scope", "Iron Boots"]);
 
     function generate_all_tbls() {
-        generate_all_upgrades();
+        // generate_all_upgrades();
         generate_all_levels();
     }
 

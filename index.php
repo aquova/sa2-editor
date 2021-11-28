@@ -11,7 +11,7 @@
         <label for="fileinput">Upload a save file: </label>
         <input type="file" id="fileinput" autocomplete="off"/>
         <br/>
-        <input type="button" id="savebutton" value="Save data" class="disabled" disabled/>
+        <input type="button" id="savebutton" value="Save data" disabled/>
         <br/>
         <details>
             <summary>How to find your save data</summary>
@@ -29,7 +29,8 @@
         <hr/>
         <h2>Save Details</h2>
         <p id="emblem_count">Number of Emblems: 0</p>
-        <p id="ring_count">Total Rings: 0</p>
+        <label for ="ring_count">Total Rings: </label>
+        <input type="number" id="ring_count" min="0" max="9999999" value="0">
         <div id="tables">
             <?php generate_all_tbls(); ?>
         </div>

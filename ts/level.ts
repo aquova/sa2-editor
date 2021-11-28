@@ -1,4 +1,4 @@
-import { format_time, le_to_be } from "./utils.js"
+import { format_time, bytes_to_num } from "./utils.js"
 
 // A brief description on how level data is stored in the save file:
 // Each level is given a block of data, which has overall data - rank and # of attempts - then is broken up into its 5 missions.
@@ -109,7 +109,7 @@ function populate_rank(save_data: Uint8Array, mission_row: HTMLTableElement, lev
 function populate_attempts(save_data: Uint8Array, mission_row: HTMLTableElement, level_addr: number, mission_num: number) {
     let attempt_elem = mission_row.getElementsByClassName("attempts")[0] as HTMLTableCellElement
     const addr = level_addr + ATTEMPT_OFFSET + 2 * mission_num
-    const attempts = le_to_be(save_data[addr], save_data[addr + 1])
+    const attempts = bytes_to_num(save_data.slice(addr, addr + 2))
     attempt_elem.innerHTML = attempts.toString()
 }
 
@@ -121,7 +121,7 @@ function populate_points(save_data: Uint8Array, mission_row: HTMLTableElement, l
         if (is_racing) {
             pts = "N/A"
         } else {
-            pts = le_to_be(save_data[addr], save_data[addr + 1]).toString()
+            pts = bytes_to_num(save_data.slice(addr, addr + 2)).toString()
         }
         point_elems[i].innerHTML = pts
     }
@@ -141,7 +141,7 @@ function populate_rings(save_data: Uint8Array, mission_row: HTMLTableElement, le
     let ring_elems = mission_row.getElementsByClassName("rings") as HTMLCollectionOf<HTMLTableCellElement>
     for (let i = 0; i < ring_elems.length; i++) {
         const addr = level_addr + MISSION_OFFSET + mission_num * MISSION_LEN + i * RUN_LEN + RINGS_OFFSET
-        const rings = le_to_be(save_data[addr], save_data[addr + 1])
+        const rings = bytes_to_num(save_data.slice(addr, addr + 2))
         ring_elems[i].innerHTML = rings.toString()
     }
 }
